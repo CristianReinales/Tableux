@@ -88,7 +88,28 @@ def no_literales(l):
 	# solo literales
 	# Input: l, una lista de fórmulas como árboles
 	# Output: None/f, tal que f no es literal
-	return False
+    return False
+
+def clasificacion(l):
+    if (l.label == '-'):
+        if (l.right.label == '-'):
+            return "1alfa"
+        elif (l.right.label == 'O'):
+            return "3alfa"
+        elif (l.right.label == '>'):
+            return "4alfa"
+        elif (l.right.label == 'Y'):
+            return "1beta"
+        
+    if (l.label == 'Y'):
+        return "2alfa"
+    
+    if (l.label == 'O'):
+        return "2beta"
+    
+    if (l.label == '>'):
+        return "3beta"
+    return "error"
 
 def clasifica_y_extiende(f):
 	# clasifica una fórmula como alfa o beta y extiende listaHojas
@@ -111,5 +132,3 @@ def Tableaux(f):
 
 	return listaInterpsVerdaderas
 
-x = [Tree('b',None,None), Tree('-',None,Tree('a',None,None)), Tree('-',None,Tree('c',None,None)), Tree('a',None,None), Tree('d',None,None)]
-print(par_complementario(x))
