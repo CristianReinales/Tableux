@@ -58,12 +58,24 @@ def imprime_hoja(H):
 		cadena += Inorder(f)
 	return cadena + "}"
 
+def complemento(l):
+    if (l.label == '-'):
+        return l.right
+    else:
+        return Tree('-',None,l)
+
 def par_complementario(l):
 	# Esta función determina si una lista de solo literales
 	# contiene un par complementario
 	# Input: l, una lista de literales
 	# Output: True/False
-	return False
+    for i in l:
+        indices = [x for x in l if x != i]
+        for j in indices:
+            if (Inorder(i) == Inorder(complemento(j))):
+                return True
+        
+    return False
 
 def es_literal(f):
 	# Esta función determina si el árbol f es un literal
@@ -98,3 +110,6 @@ def Tableaux(f):
 	listaHojas = [[A]]
 
 	return listaInterpsVerdaderas
+
+x = [Tree('b',None,None), Tree('-',None,Tree('a',None,None)), Tree('-',None,Tree('c',None,None)), Tree('a',None,None), Tree('d',None,None)]
+print(par_complementario(x))
