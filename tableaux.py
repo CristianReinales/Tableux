@@ -84,6 +84,7 @@ def clasifica_y_extiende(f):
 	# de acuerdo a la regla respectiva
 	# Input: f, una fórmula como árbol
 	# Output: no tiene output, pues modifica la variable global listaHojas
+    print("ok camilo")
 	global listaHojas
 
 def Tableaux(f):
