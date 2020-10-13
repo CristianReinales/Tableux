@@ -63,6 +63,7 @@ def par_complementario(l):
 	# contiene un par complementario
 	# Input: l, una lista de literales
 	# Output: True/False
+	print("ok Cristian")
 	return False
 
 def es_literal(f):
