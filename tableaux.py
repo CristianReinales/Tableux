@@ -93,6 +93,9 @@ def es_literal(f):
     if (f.label == "-"):
         if(f.right.label in letrasProposicionales):
             return True
+        elif(f.right.label == "-"):
+            if (f.right.right.label in letrasProposicionales):
+                return True
         else:
             return False
     if(f.label in letrasProposicionales):
@@ -104,6 +107,11 @@ def no_literales(l):
 	# solo literales
 	# Input: l, una lista de fórmulas como árboles
 	# Output: None/f, tal que f no es literal
+
+    for i in l:
+       if (es_literal(i) == False):
+            return i
+        
     return None
 
 def clasificacion(l):
@@ -130,7 +138,7 @@ def clasificacion(l):
 def clasifica_y_extiende(f, h):
 	# clasifica una fórmula como alfa o beta y extiende listaHojas
 	# de acuerdo a la regla respectiva
-	# Input: f, una fórmula como árbol
+	# Input: f, una fórmula como árbol 
 	# Output: no tiene output, pues modifica la variable global listaHojas
     global listaHojas
     tipo = clasificacion(f)
@@ -160,6 +168,6 @@ def Tableaux(f):
 
 	return listaInterpsVerdaderas
 
-x = Tree('a',None,None)
-print(es_literal(x))
+x = [Tree('p',None,None),Tree('q',None,None),Tree('O',Tree('p',None,None),Tree('q',None,None)),Tree('-',None,Tree('q',None,None)),Tree('-',None,Tree('p',None,None))]
+print(no_literales(x))
 
