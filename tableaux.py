@@ -33,15 +33,24 @@ def Inorder(f):
 		return "(" + Inorder(f.left) + f.label + Inorder(f.right) + ")"
 
 def string2Tree(A):
-    # Crea una formula como tree dada una formula como cadena escrita en notacion polaca inversa
-    # Input: A, lista de caracteres con una formula escrita en notacion polaca inversa
-             # letrasProposicionales, lista de letras proposicionales
-    # Output: formula como tree
-
-	# OJO: DEBE INCLUIR SU CÓDIGO DE STRING2TREE EN ESTA PARTE!!!!!
-
-	p = letrasProposicionales[0] # ELIMINE ESTA LINEA LUEGO DE INCLUIR EL CODIGO DE STRING2TREE
-	return Tree(p, None, None) # ELIMINE ESTA LINEA LUEGO DE INCLUIR EL CODIGO DE STRING2TREE
+    letrasProposicionales=[chr(x) for x in range(256, 600)]
+    Conectivos = ['O','Y','>','=']
+    Pila = []
+    for c in A:
+        if c in letrasProposicionales:
+            Pila.append(Tree(c,None,None))
+        elif c=='-':
+            FormulaAux = Tree(c,None,Pila[-1])
+            del Pila[-1]
+            Pila.append(FormulaAux)
+        elif c in Conectivos:
+            FormulaAux = Tree(c,Pila[-1],Pila[-2])
+            del Pila[-1]
+            del Pila[-1]
+            Pila.append(FormulaAux)
+        else:
+            print(u"Hay un problema: el símbolo " + str(c)+ " no se reconoce")
+    return Pila[-1]
 
 ##############################################################################
 # Definición de funciones de tableaux
@@ -111,12 +120,24 @@ def clasificacion(l):
         return "3beta"
     return "error"
 
-def clasifica_y_extiende(f):
+def clasifica_y_extiende(f, h):
 	# clasifica una fórmula como alfa o beta y extiende listaHojas
 	# de acuerdo a la regla respectiva
 	# Input: f, una fórmula como árbol
 	# Output: no tiene output, pues modifica la variable global listaHojas
-	global listaHojas
+    global listaHojas
+    tipo = clasificacion(f)
+    if (tipo == "1alfa") or (tipo == "2alfa") or (tipo == "3alfa") or (tipo == "4alfa"):
+        aux = [x for x in h if x!=f] + [f.left, f.right]
+        listaHojas.remove(h)
+        listaHojas.append(aux)
+    elif (tipo == "1beta") or (tipo == "2beta") or (tipo == "3beta"):
+        aux1 = [x for x in h if x!=f] + [f.left]
+        aux2 = [x for x in h if x!=f] + [f.right]
+        listaHojas.remove(h)
+        listaHojas.append(aux1)
+        listaHojas.append(aux2)
+        
 
 def Tableaux(f):
 
@@ -131,4 +152,6 @@ def Tableaux(f):
 	listaHojas = [[A]]
 
 	return listaInterpsVerdaderas
+
+
 
