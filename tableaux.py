@@ -91,7 +91,7 @@ def es_literal(f):
 	# Input: f, una fórmula como árbol
 	# Output: True/False
     if (f.label == "-"):
-        if(f.label.right in letrasProposicionales):
+        if(f.right.label in letrasProposicionales):
             return True
         else:
             return False
