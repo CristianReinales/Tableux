@@ -90,14 +90,20 @@ def es_literal(f):
 	# Esta función determina si el árbol f es un literal
 	# Input: f, una fórmula como árbol
 	# Output: True/False
-	return False
+    if (f.label == "-"):
+        if(f.label.right in letrasProposicionales):
+            return True
+        else:
+            return False
+    if(f.label in letrasProposicionales):
+        return True
+    return False
 
 def no_literales(l):
 	# Esta función determina si una lista de fórmulas contiene
 	# solo literales
 	# Input: l, una lista de fórmulas como árboles
 	# Output: None/f, tal que f no es literal
-    return False
 
 def clasificacion(l):
     if (l.label == '-'):
@@ -153,5 +159,6 @@ def Tableaux(f):
 
 	return listaInterpsVerdaderas
 
-
+x = Tree('O',Tree('k',None,None),Tree('Y',Tree('i',None,None),Tree('j',None,None)))
+print(es_literal(x))
 
