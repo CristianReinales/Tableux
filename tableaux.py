@@ -104,6 +104,11 @@ def no_literales(l):
 	# solo literales
 	# Input: l, una lista de fórmulas como árboles
 	# Output: None/f, tal que f no es literal
+    for i in l:
+        if (es_literal(i) == False):
+            return i
+        
+    return None
 
 def clasificacion(l):
     if (l.label == '-'):
