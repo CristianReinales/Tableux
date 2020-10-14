@@ -91,7 +91,7 @@ def es_literal(f):
 	# Input: f, una fórmula como árbol
 	# Output: True/False
     if (f.label == "-"):
-        if(f.label.right in letrasProposicionales):
+        if(f.right.label in letrasProposicionales):
             return True
         else:
             return False
@@ -159,6 +159,6 @@ def Tableaux(f):
 
 	return listaInterpsVerdaderas
 
-x = Tree('O',Tree('k',None,None),Tree('Y',Tree('i',None,None),Tree('j',None,None)))
+x = Tree('a',None,None)
 print(es_literal(x))
 
