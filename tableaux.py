@@ -178,7 +178,7 @@ def clasifica_y_extiende(f, h):
         listaHojas.append(aux2)
         
 
-def Tableaux(f):
+def Tableaux2(f):
 	# Algoritmo de creacion de tableau a partir de lista_hojas
 	# Imput: - f, una fórmula como string en notación polaca inversa
 	# Output: interpretaciones: lista de listas de literales que hacen
@@ -190,9 +190,9 @@ def Tableaux(f):
     A = string2Tree(f)
     listaHojas = [[A]]
     
-    i = 0
-    while(no_literales(listaHojas[i]) != None):
-        clasifica_y_extiende(no_literales(listaHojas[i]), listaHojas[i])
+
+    while(no_literales(listaHojas) != None):
+        clasifica_y_extiende(no_literales(listaHojas), listaHojas)
    
         
     for i in listaHojas:
@@ -201,6 +201,36 @@ def Tableaux(f):
             listaInterpsVerdaderas.append([listaHojas[i]])
 
     return listaInterpsVerdaderas
+
+def Tableaux(f):
+
+	# Algoritmo de creacion de tableau a partir de lista_hojas
+	# Imput: - f, una fórmula como string en notación polaca inversa
+	# Output: interpretaciones: lista de listas de literales que hacen
+	#		 verdadera a f
+
+	global listaHojas
+	global listaInterpsVerdaderas
+
+	A = string2Tree(f)
+	print(u'La fórmula introducida es:\n', Inorder(A))
+
+	listaHojas = [[A]]
+
+	while (len(listaHojas) > 0):
+		h = choice(listaHojas)
+		print("Trabajando con hoja:\n", imprime_hoja(h))
+		x = no_literales(h)
+		if x == None:
+			if par_complementario(h):
+				listaHojas.remove(h)
+			else:
+				listaInterpsVerdaderas.append(h)
+				listaHojas.remove(h)
+		else:
+			clasifica_y_extiende(x, h)
+
+	return listaInterpsVerdaderas
 
 
 
