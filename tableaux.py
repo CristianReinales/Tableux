@@ -93,9 +93,9 @@ def es_literal(f):
     if (f.label == "-"):
         if(f.right.label in letrasProposicionales):
             return True
-        elif(f.right.label == "-"):
-            if (f.right.right.label in letrasProposicionales):
-                return True
+#        elif(f.right.label == "-"):
+#            if (f.right.right.label in letrasProposicionales):
+#                return True
     if(f.label in letrasProposicionales):
         return True
     return False
