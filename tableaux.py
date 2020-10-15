@@ -142,13 +142,37 @@ def clasifica_y_extiende(f, h):
 	# Output: no tiene output, pues modifica la variable global listaHojas
     global listaHojas
     tipo = clasificacion(f)
-    if (tipo == "1alfa") or (tipo == "2alfa") or (tipo == "3alfa") or (tipo == "4alfa"):
+    if (tipo == "1alfa"):
+        aux = [x for x in h if x!=f] + [f.right.right]
+        listaHojas.remove(h)
+        listaHojas.append(aux)
+    elif (tipo == "2alfa"):
         aux = [x for x in h if x!=f] + [f.left, f.right]
         listaHojas.remove(h)
         listaHojas.append(aux)
-    elif (tipo == "1beta") or (tipo == "2beta") or (tipo == "3beta"):
-        aux1 = [x for x in h if x!=f] + [f.left]
-        aux2 = [x for x in h if x!=f] + [f.right]
+    elif (tipo == "3alfa"):
+        aux = [x for x in h if x!=f] + [Tree('-', None, f.right.right), Tree('-', None, f.right.left)]
+        listaHojas.remove(h)
+        listaHojas.append(aux)
+    elif (tipo == "4alfa"):
+        aux = [x for x in h if x!=f] + [f.right.left, Tree('-', None, f.right.right)]
+        listaHojas.remove(h)
+        listaHojas.append(aux)
+    elif (tipo == "1beta"):
+        aux1 = [x for x in h if x!=f] + [Tree('-', None, f.right.right)]
+        aux2 = [x for x in h if x!=f] + [Tree('-', None, f.right.left)]
+        listaHojas.remove(h)
+        listaHojas.append(aux1)
+        listaHojas.append(aux2)
+    elif (tipo == "2beta"):
+        aux1 = [x for x in h if x!=f] + [f.right.right]
+        aux2 = [x for x in h if x!=f] + [f.right.left]
+        listaHojas.remove(h)
+        listaHojas.append(aux1)
+        listaHojas.append(aux2)
+    elif (tipo == "3beta"):
+        aux1 = [x for x in h if x!=f] + [f.right.right]
+        aux2 = [x for x in h if x!=f] + [Tree('-', None, f.right.left)]
         listaHojas.remove(h)
         listaHojas.append(aux1)
         listaHojas.append(aux2)
@@ -166,13 +190,15 @@ def Tableaux(f):
     A = string2Tree(f)
     listaHojas = [[A]]
     
-    while(no_literales(listaHojas) != None):
-        clasifica_y_extiende(no_literales(listaHojas))
+    i = 0
+    while(no_literales(listaHojas[i]) != None):
+        clasifica_y_extiende(no_literales(listaHojas[i]), listaHojas[i])
+   
         
     for i in listaHojas:
-        j = par_complementario(i)
+        j = par_complementario(listaHojas[i])
         if (j == False):
-            listaInterpsVerdaderas.append(i)
+            listaInterpsVerdaderas.append([listaHojas[i]])
 
     return listaInterpsVerdaderas
 
