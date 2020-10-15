@@ -159,7 +159,7 @@ def Tableaux(f):
 	# Imput: - f, una fórmula como string en notación polaca inversa
 	# Output: interpretaciones: lista de listas de literales que hacen
 	#		 verdadera a f
-<<<<<<< HEAD
+
     global listaHojas
     global listaInterpsVerdaderas
 
@@ -175,7 +175,7 @@ def Tableaux(f):
             listaInterpsVerdaderas.append(i)
 
     return listaInterpsVerdaderas
-=======
+
 	global listaHojas
 	global listaInterpsVerdaderas
 	A = string2Tree(f)
@@ -189,7 +189,6 @@ def Tableaux(f):
 
 
 
->>>>>>> bafb07e33dbc1b85d52af5a942b7651ad4468b3b
 
 
 
