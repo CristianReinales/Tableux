@@ -176,23 +176,6 @@ def Tableaux(f):
 
     return listaInterpsVerdaderas
 
-	global listaHojas
-	global listaInterpsVerdaderas
-	A = string2Tree(f)
-	listaHojas = [[A]]
-    while (no_literales(listaHojas)  != None):
-        clasifica_y_extiende(no_literales(listaHojas))
-    for i in listaHojas:
-        j = par_complementario(i)
-        if(j == False):
-            listaInterpsVerdaderas.append(i)
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 9b9e67e8dd98382e228516b304687a15a9037bf1
 
 
 
