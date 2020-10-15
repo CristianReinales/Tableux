@@ -96,8 +96,6 @@ def es_literal(f):
         elif(f.right.label == "-"):
             if (f.right.right.label in letrasProposicionales):
                 return True
-        else:
-            return False
     if(f.label in letrasProposicionales):
         return True
     return False
@@ -213,3 +211,4 @@ def Tableaux(f):
 
 
 
+ 
