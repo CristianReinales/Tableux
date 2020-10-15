@@ -10,6 +10,7 @@ import tableaux as T
 # Fórmula (en notación polaca inversa)
 # para obtener uno de sus tableaux
 formula = "pq>-rO"
+formula2 = "qpOq-p-YY"
 
 # Se crea el tableau
 ta = T.Tableaux(formula)

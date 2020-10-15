@@ -33,7 +33,7 @@ def Inorder(f):
 		return "(" + Inorder(f.left) + f.label + Inorder(f.right) + ")"
 
 def string2Tree(A):
-    letrasProposicionales=[chr(x) for x in range(256, 600)]
+    letrasProposicionales=[chr(x) for x in range(97, 123)]
     Conectivos = ['O','Y','>','=']
     Pila = []
     for c in A:
@@ -155,19 +155,25 @@ def clasifica_y_extiende(f, h):
         
 
 def Tableaux(f):
-
 	# Algoritmo de creacion de tableau a partir de lista_hojas
 	# Imput: - f, una fórmula como string en notación polaca inversa
 	# Output: interpretaciones: lista de listas de literales que hacen
 	#		 verdadera a f
-	global listaHojas
-	global listaInterpsVerdaderas
+    global listaHojas
+    global listaInterpsVerdaderas
 
-	A = string2Tree(f)
-	listaHojas = [[A]]
+    A = string2Tree(f)
+    listaHojas = [[A]]
+    
+    while(no_literales(listaHojas) != None):
+        clasifica_y_extiende(no_literales(listaHojas))
+        
+    for i in listaHojas:
+        j = par_complementario(i)
+        if (j == False):
+            listaInterpsVerdaderas.append(i)
 
-	return listaInterpsVerdaderas
+    return listaInterpsVerdaderas
 
-x = [Tree('p',None,None),Tree('q',None,None),Tree('O',Tree('p',None,None),Tree('q',None,None)),Tree('-',None,Tree('q',None,None)),Tree('-',None,Tree('p',None,None))]
-print(no_literales(x))
+
 
