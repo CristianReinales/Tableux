@@ -165,14 +165,14 @@ def clasifica_y_extiende(f, h):
         listaHojas.append(aux1)
         listaHojas.append(aux2)
     elif (tipo == "2beta"):
-        aux1 = [x for x in h if x!=f] + [f.right.right]
-        aux2 = [x for x in h if x!=f] + [f.right.left]
+        aux1 = [x for x in h if x!=f] + [f.right]
+        aux2 = [x for x in h if x!=f] + [f.left]
         listaHojas.remove(h)
         listaHojas.append(aux1)
         listaHojas.append(aux2)
     elif (tipo == "3beta"):
-        aux1 = [x for x in h if x!=f] + [f.right.right]
-        aux2 = [x for x in h if x!=f] + [Tree('-', None, f.right.left)]
+        aux1 = [x for x in h if x!=f] + [f.right]
+        aux2 = [x for x in h if x!=f] + [Tree('-', None, f.left)]
         listaHojas.remove(h)
         listaHojas.append(aux1)
         listaHojas.append(aux2)
