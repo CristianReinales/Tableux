@@ -84,6 +84,10 @@ def imprime_hoja(H):
 		cadena += Inorder(f)
 	return cadena + "}"
 
+def imprime_listaHojas(ta):
+    for l in ta:
+        print(imprime_hoja(l))
+
 def complemento(l):
     if (l.label == '-'):
         return l.right
