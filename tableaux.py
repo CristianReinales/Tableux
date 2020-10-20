@@ -20,7 +20,7 @@ class Tree(object):
 		self.left = left
 		self.right = right
 		self.label = label
-        
+
 def Inorder2Tree(A):
 	if len(A) == 1:
 		return Tree(A[0], None, None)
@@ -104,7 +104,7 @@ def par_complementario(l):
         for j in indices:
             if (Inorder(i) == Inorder(complemento(j))):
                 return True
-        
+
     return False
 
 def es_literal(f):
@@ -130,7 +130,7 @@ def no_literales(l):
     for i in l:
        if (es_literal(i) == False):
             return i
-        
+
     return None
 
 def clasificacion(l):
@@ -143,13 +143,13 @@ def clasificacion(l):
             return "4alfa"
         elif (l.right.label == 'Y'):
             return "1beta"
-        
+
     if (l.label == 'Y'):
         return "2alfa"
-    
+
     if (l.label == 'O'):
         return "2beta"
-    
+
     if (l.label == '>'):
         return "3beta"
     return "error"
@@ -157,7 +157,7 @@ def clasificacion(l):
 def clasifica_y_extiende(f, h):
 	# clasifica una fórmula como alfa o beta y extiende listaHojas
 	# de acuerdo a la regla respectiva
-	# Input: f, una fórmula como árbol 
+	# Input: f, una fórmula como árbol
 	# Output: no tiene output, pues modifica la variable global listaHojas
     global listaHojas
     tipo = clasificacion(f)
@@ -195,7 +195,7 @@ def clasifica_y_extiende(f, h):
         listaHojas.remove(h)
         listaHojas.append(aux1)
         listaHojas.append(aux2)
-        
+
 
 
 
@@ -209,7 +209,10 @@ def Tableaux(f):
 	global listaHojas
 	global listaInterpsVerdaderas
 
-	A = string2Tree(f)
+	try:
+		A = string2Tree(f)
+	except:
+		A = Inorder2Tree(f)
 	print(u'La fórmula introducida es:\n', Inorder(A))
 
 	listaHojas = [[A]]
@@ -228,7 +231,3 @@ def Tableaux(f):
 			clasifica_y_extiende(x, h)
 
 	return listaInterpsVerdaderas
-
-
-
- 
