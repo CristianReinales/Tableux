@@ -20,6 +20,23 @@ class Tree(object):
 		self.left = left
 		self.right = right
 		self.label = label
+        
+def Inorder2Tree(A):
+	if len(A) == 1:
+		return Tree(A[0], None, None)
+	elif A[0] == '-':
+		return Tree(A[0], None, Inorder2Tree(A[1:]))
+	elif A[0] == "(":
+		counter = 0 #Contador de parentesis
+		for i in range(1, len(A)):
+			if A[i] == "(":
+				counter += 1
+			elif A[i] == ")":
+				counter -=1
+			elif (A[i] in ['Y', 'O', '>', '=']) and (counter == 0):
+				return Tree(A[i], Inorder2Tree(A[1:i]), Inorder2Tree(A[i + 1:-1]))
+	else:
+		return -1
 
 def Inorder(f):
     # Imprime una formula como cadena dada una formula como arbol
@@ -207,7 +224,6 @@ def Tableaux(f):
 			clasifica_y_extiende(x, h)
 
 	return listaInterpsVerdaderas
-
 
 
 
